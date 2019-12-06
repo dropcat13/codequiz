@@ -11,7 +11,7 @@ var timer;
 var userScore = 0;
 var userName = "";
 var i = 0;
-var restart;
+var restart = "";
 
 startQuiz.addEventListener("click", start);
 
@@ -114,9 +114,6 @@ function endOfQuiz() {
   highscores.appendChild(restart);
 }
 
-// function saves userscore to local storage
-// creates a do you want to save your highscore button
-// on that click 
 const userInfo = {
   name: "userName",
   score: "userScore",
@@ -126,5 +123,3 @@ window.localStorage.setItem('userInfo', JSON.stringify(person));
 
 localStorage.setItem("userScore", userScore);
 localStorage.setItem("userName", userName);
-
-// when game is played again userscore and name is still stored when they finish the next time.
