@@ -1,0 +1,7 @@
+#answers {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    width: 20%;
+    margin: auto;
+}

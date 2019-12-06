@@ -4,6 +4,7 @@ var corner = document.querySelector("#corner");
 var bodyEl = document.createElement("ul");
 var timerEl = document.querySelector("#time");
 var quiztitle = document.querySelector("#quiztitle");
+var answers = document.querySelector('#answers');
 var secondsDisplay;
 var totalSeconds = 0;
 var timer;
@@ -15,12 +16,17 @@ startQuiz.addEventListener("click", start);
 
 // gets a click from one of the answer buttons and displays the next question. Event bubbling? 
 // document.addEventListener("click", ".ansBtn", nextQuestion);
-document.addEventListener('click',function(event){
+document.addEventListener('click',function(event){  
   event.stopPropagation();
-  // if(event.target.class == ('ansBtn') ){
+  if(event.target.classList == ('ansBtn') ){
+    if (i < 4){
     quizScore()
-    nextQuestion()   
-  //  }
+    nextQuestion() 
+    }
+    else {
+      endOfQuiz()
+    }  
+   }
 });
 
 function start() {
@@ -57,34 +63,36 @@ function startTimer() {
 }
 
 function nextQuestion() {
-  i++;
   startQuestions()
 }
 
 function startQuestions() {
-  console.log(i);
   if (i<questions.length) {
     document.getElementById("quiztitle").style.textAlign = "center";
-    quiztitle.append(questions[i].title);
+    quiztitle.innerHTML = questions[i].title;
+    answers.innerHTML = "";
     for (j = 0; j < questions[i].choices.length; j++) {
       var btn = document.createElement("button");
       btn.classList.add("ansBtn");
-      btn.innerHTML = questions[i].choices[j];
-      quiztitle.appendChild(btn);
+      btn.innerHTML = questions[i].choices[j];    
+      answers.appendChild(btn);
     }
   } 
 }
 
 function quizScore() {
-  if ( event.currentTarget === questions[i].answer) {
+  console.log(i)
+  if ( event.target.textContent === questions[i].answer) {
     userScore++;
   } else {
     totalSeconds - 10;
   }
+  i++;
 }
 
 // at the end of the game, there is an option to enter your name and score as a high score
 function endOfQuiz() {
+  // stop Timer
   document.getElementById("quiz").style.textAlign = "center";
   var quizComplete = document.createElement("h2");
   quizComplete.textContent = "You've completed the quiz. Your score is " + userScore + ". Enter your name into highscores!";
