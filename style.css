@@ -13,3 +13,9 @@
     width: 20%;
     margin: auto;
 }
+
+button {
+    padding: 10px;
+    margin: auto;
+    background-color: #9c60ab;
+}

@@ -8,7 +8,7 @@ On clicking the startquiz button, a timer will start (15 secs per question), and
  * [ https://dropcat13.github.io/homework4-codequiz/]
 
 ### Link to screenshot of deployed website
- * [!Screenshot 2019-12-07 at 09.47.18] 
+ * [!../Screenshot 2019-12-07 at 09.47.18] 
 
 ### Technologies used
 This project used HTML, CSS (using bootstrap for layout and mobile readiness) and javascript. 

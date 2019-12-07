@@ -11,7 +11,8 @@ var timer;
 var userScore = 0;
 var userName = "";
 var i = 0;
-var restart = "";
+var restart = document.querySelector("#restartbutton");
+var timeInterval;
 
 startQuiz.addEventListener("click", start);
 
@@ -30,13 +31,16 @@ document.addEventListener('click',function(event){
    }
 });
 
-restart.addEventListener("click", start);
-
 function start() {
   removeStartinginfo();
   startTimer();
   startQuestions();
 }
+
+// function restart() {
+//   startTimer();
+//   startQuestions();
+// }
 
 function removeStartinginfo() {
   var quiz = document.getElementById("startquiz");
@@ -48,7 +52,7 @@ function removeStartinginfo() {
 function startTimer() {
   totalSeconds = questions.length * 15;
   console.log(questions.length);
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
     totalSeconds--;
     timerEl.textContent = `${totalSeconds} seconds remaining`;
 
@@ -94,7 +98,7 @@ function quizScore() {
 }
 
 function endOfQuiz() {
-  // stop Timer
+  clearInterval(timeInterval);
   document.getElementById("quiz").style.textAlign = "center";
   var quizComplete = document.createElement("h2");
   quizComplete.textContent = "You've completed the quiz. Your score is " + userScore + ". Enter your name into highscores!";
@@ -111,7 +115,14 @@ function endOfQuiz() {
 
   var restart = document.createElement("button");
   restart.innerHTML = "RESTART";
+  restart.setAttribute("id", "restartbutton");
+  restart.addEventListener("click", restartgame);
   highscores.appendChild(restart);
+}
+
+function restartgame() { 
+  startTimer();
+  startQuestions();
 }
 
 const userInfo = {
@@ -119,7 +130,7 @@ const userInfo = {
   score: "userScore",
 }
 
-window.localStorage.setItem('userInfo', JSON.stringify(person));
+// window.localStorage.setItem('userInfo', JSON.stringify(person));
 
-localStorage.setItem("userScore", userScore);
-localStorage.setItem("userName", userName);
+// localStorage.setItem("userScore", userScore);
+// localStorage.setItem("userName", userName);
